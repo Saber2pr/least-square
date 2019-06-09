@@ -1,10 +1,10 @@
 {
   "name": "least-square",
   "version": "0.0.1",
-  "description": "——————",
+  "description": "> least-square",
   "repository": {
     "type": "git",
-    "url": "git+—————"
+    "url": "git+https://github.com/Saber2pr/least-square.git"
   },
   "author": "saber2pr",
   "license": "ISC",
@@ -14,7 +14,6 @@
   ],
   "main": "./lib/index.js",
   "scripts": {
-    "test": "node ./lib/test/test.js",
     "start": "tsc --watch",
     "dev": "rollup -c --watch"
   },

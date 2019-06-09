@@ -7,7 +7,7 @@
 npm install least-square
 
 # from github
-git clone —————
+git clone https://github.com/Saber2pr/least-square.git
 ```
 
 ---
