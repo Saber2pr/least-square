@@ -2,6 +2,8 @@
 
 > least-square
 
+[view>>](https://saber2pr.github.io/MyWeb/build/least-square)
+
 ```bash
 # from npm
 npm install least-square
