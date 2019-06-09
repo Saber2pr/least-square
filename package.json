@@ -1,0 +1,34 @@
+{
+  "name": "least-square",
+  "version": "0.0.1",
+  "description": "——————",
+  "repository": {
+    "type": "git",
+    "url": "git+—————"
+  },
+  "author": "saber2pr",
+  "license": "ISC",
+  "files": [
+    "lib/core/*",
+    "lib/index.*"
+  ],
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "node ./lib/test/test.js",
+    "start": "tsc --watch",
+    "dev": "rollup -c --watch"
+  },
+  "devDependencies": {
+    "rollup": "^1.1.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-uglify": "^6.0.2",
+    "typescript": "^3.4.3"
+  },
+  "dependencies": {
+    "@types/react": "^16.8.19",
+    "@types/react-dom": "^16.8.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
