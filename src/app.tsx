@@ -1,36 +1,48 @@
 import React, { useState } from 'react'
 import { LS } from './core'
 import ReactDOM from 'react-dom'
-import { Table } from './components/table'
-import { Result } from './components/result'
+import { Table, Result, FileUpload } from './components'
+import { useForceUpdate } from './hooks'
 
 const App = () => {
   const [data, setData] = useState<LS.Data>([{ x: 0, y: 0 }])
 
-  const [len, setLen] = useState(1)
+  const clearData = () => setData([])
+
+  const forceUpdate = useForceUpdate()
+
   return (
     <div className="container">
       <header>
         <strong>least-square</strong>
       </header>
+
       <main>
         <section>
-          <Table rows={len} onChange={setData} />
+          <Table
+            data={data}
+            onChange={data => {
+              setData(data)
+              forceUpdate()
+            }}
+          />
         </section>
-        <aside>
-          <nav className="toolBar">
-            <button className="add" onClick={() => setLen(len + 1)}>
-              +
-            </button>
-            <button className="add" onClick={() => len && setLen(len - 1)}>
-              -
-            </button>
-          </nav>
-        </aside>
+
+        <section>
+          <Result data={data} />
+        </section>
+
+        <section>
+          <FileUpload
+            onLoad={data => {
+              clearData()
+              setData(data)
+            }}
+          />
+        </section>
       </main>
-      <footer>
-        <Result value={LS.exec(data)} />
-      </footer>
+
+      <footer className="auth">by saber2pr.</footer>
     </div>
   )
 }

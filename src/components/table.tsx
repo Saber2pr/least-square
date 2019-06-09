@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react'
+import React from 'react'
 import { LS } from '../core'
+import { usePoints } from '../hooks'
 
 export interface Point {
   key: React.ReactText
@@ -7,65 +8,54 @@ export interface Point {
 }
 
 export const Table = ({
-  rows,
+  data,
   onChange
 }: {
-  rows: number
+  data: LS.Data
   onChange?: (data: LS.Data) => void
 }) => {
-  const [points, setPoints] = useState<Point[]>([])
-
-  const x = useRef<HTMLInputElement>()
-  const y = useRef<HTMLInputElement>()
-
-  const addPoint = (key: React.ReactText) => () => {
-    const point: Point = {
-      key,
-      value: { x: Number(x.current.value), y: Number(y.current.value) }
-    }
-    const poi = points.find(p => p.key === point.key)
-
-    if (poi) {
-      poi.value = point.value
-      setPoints(points)
-      onChange && onChange(points.map(p => p.value))
-    } else {
-      setPoints(points.concat(point))
-    }
-  }
-
+  const [points, update, add, sub] = usePoints(data, onChange)
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>x</th>
-          <th>y</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Array(rows)
-          .fill(0)
-          .map((v, i) => (
-            <tr key={v + i}>
+    <>
+      <table>
+        <thead>
+          <tr>
+            <th>x</th>
+            <th>y</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {points.map(({ x, y }, i) => (
+            <tr key={i}>
               <td>
                 <input
-                  ref={x}
                   type="text"
-                  defaultValue="0"
-                  onInput={addPoint(v + i)}
+                  defaultValue={String(x)}
+                  onInput={update(i, 'x')}
                 />
               </td>
+
               <td>
                 <input
-                  ref={y}
                   type="text"
-                  defaultValue="0"
-                  onInput={addPoint(v + i)}
+                  defaultValue={String(y)}
+                  onInput={update(i, 'y')}
                 />
               </td>
             </tr>
           ))}
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+
+      <nav className="toolBar">
+        <button className="add" onClick={add}>
+          +
+        </button>
+        <button className="add" onClick={sub}>
+          -
+        </button>
+      </nav>
+    </>
   )
 }

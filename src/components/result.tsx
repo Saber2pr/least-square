@@ -1,45 +1,27 @@
 import React from 'react'
 import { LS } from '../core'
+import { TR } from './tr'
 
-export const Result = ({
-  value: { x_, y_, xy_, x_2, k, b }
-}: {
-  value: LS.Result
-}) => {
+export const Result = ({ data }: { data: LS.Data }) => {
+  const value = LS.exec(data)
   return (
     <>
       <header>
         <strong>Result</strong>
       </header>
       <main>
-        <table>
-          <tbody>
-            <tr>
-              <th>x_</th>
-              <th>{x_}</th>
-            </tr>
-            <tr>
-              <th>y_</th>
-              <th>{y_}</th>
-            </tr>
-            <tr>
-              <th>xy_</th>
-              <th>{xy_}</th>
-            </tr>
-            <tr>
-              <th>x_2</th>
-              <th>{x_2}</th>
-            </tr>
-            <tr>
-              <th>k</th>
-              <th>{k}</th>
-            </tr>
-            <tr>
-              <th>b</th>
-              <th>{b}</th>
-            </tr>
-          </tbody>
-        </table>
+        <section>
+          <table>
+            <tbody>
+              {Object.entries(value).map(([k, v]) => (
+                <tr key={k}>
+                  <th>{k}</th>
+                  <TR>{v}</TR>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
       </main>
     </>
   )

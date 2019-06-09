@@ -15,7 +15,7 @@
   "main": "./lib/index.js",
   "scripts": {
     "start": "tsc --watch",
-    "dev": "rollup -c --watch"
+    "dev": "rollup -c -w"
   },
   "devDependencies": {
     "rollup": "^1.1.2",

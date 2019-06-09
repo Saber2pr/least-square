@@ -16,6 +16,7 @@ export namespace LS {
     x_: number
     y_: number
     xy_: number
+    x2_: number
     x_2: number
     k: number
     b: number
@@ -64,6 +65,7 @@ export namespace LS {
       x_,
       y_,
       xy_,
+      x2_,
       x_2: x_ * x_,
       k,
       b
